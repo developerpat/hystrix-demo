@@ -1,0 +1,37 @@
+server:
+  port: 8000
+
+# Aktiviert den Curcuit Breaker in Feign
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# Konfiguration der HystrixCommands pro Methode notwendig
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10
+            interruptOnTimeout: false
+      fallback:
+        enabled: false
+      requestCache:
+        enabled: false
+      requestLog:
+        enabled: false
+  collapser:
+    default:
+      requestCache:
+        enabled: false
+  threadpool:
+    default:
+      coreSize: 20
+      maximumSize: 50

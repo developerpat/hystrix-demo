@@ -1,0 +1,5 @@
+server:
+  port: 54179
+spring:
+  profiles:
+    active: operator
